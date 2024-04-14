@@ -55,9 +55,14 @@ function draw() {
                 let state = grid[i][j];
                 if (state === 1) {
                     let below = grid[i][j + 1];
-                    // accounts for bottom of grid
-                    if (below === 0 && j < rows - 1) {
+                    let belowR = grid[i + 1][j + 1];
+                    let belowL = grid[i - 1][j + 1];
+                    if (below === 0) {
                         nextGrid[i][j + 1] = 1;
+                    } else if (belowR === 0) {
+                        nextGrid[i + 1][j] = 1
+                    } else if (belowL === 0) {
+                        nextGrid[i - 1][j] = 1;
                     } else {
                         nextGrid[i][j] = 1;
                     }
